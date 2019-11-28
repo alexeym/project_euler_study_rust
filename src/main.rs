@@ -7,6 +7,41 @@ fn main() {
 
     let p3 = p3_largest_prime_factor(600851475143);
     assert!(p3 == 6857, "P3 expected {}, result {}", 6857, p3);
+
+    let p4 = p4_largest_palindrome_product();
+    assert!(p4 == 906609, "P4 expected {}, result {}", 906609, p4);
+}
+
+fn is_palindrome(num: i32) -> bool {
+    let mut copy = num;
+    let mut num_reversed = 0;
+    loop {
+        num_reversed += copy % 10;
+        copy = copy / 10;
+        if copy == 0 {
+            break;
+        }
+        num_reversed *= 10;
+    }    
+    return num_reversed == num;
+}
+
+fn p4_largest_palindrome_product() -> i32 {
+    let mut max = -1;
+    for i in (99..999).rev() {
+        for j in (99..999).rev() {
+          let possible_palindrome = i * j;
+          if possible_palindrome < max {
+            break;
+            }
+            if is_palindrome(possible_palindrome) {
+                max = possible_palindrome;
+                break;
+            }
+        }
+    }
+
+    return max;
 }
 
 fn p3_largest_prime_factor(mut num: i64) -> i64 {
