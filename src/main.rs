@@ -10,6 +10,28 @@ fn main() {
 
     let p4 = p4_largest_palindrome_product();
     assert!(p4 == 906609, "P4 expected {}, result {}", 906609, p4);
+
+    let p5 = p5_smallest_multiple();
+    assert!(p5 == 232792560, "P5 expected {}, result {}", 232792560, p5);
+}
+
+fn p5_smallest_multiple() -> i64 {
+
+    let mut num = 0;
+    let nums = [6, 9, 11, 12, 13, 14, 15, 16];
+    loop {
+        num += 17 * 19 * 20;
+        let mut is_divisible = true;
+        for i in 0..nums.len() {
+            if num % nums[i] != 0 {
+                is_divisible = false;
+            }
+        }
+        if is_divisible {
+            break;
+        }
+    }
+    return num;
 }
 
 fn is_palindrome(num: i32) -> bool {
